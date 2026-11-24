@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenBuddy · Zenfresh ON Desk</title>
+  <meta name="description" content="ZenBuddy by Zenfresh: practise your viva, plan your 7-to-7 day, check today's freshness forecast, volunteer and find a free Smile Camp.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="#home" class="brand"><img src="assets/logo-white.png" alt="Zenfresh"><span>ZenBuddy</span></a>
+    <nav class="links" id="links">
+      <a href="#viva">Viva Coach</a>
+      <a href="#planner">7-to-7 Planner</a>
+      <a href="#forecast">Fresh Forecast</a>
+      <a href="#volunteer">ভালো কাজ</a>
+      <a href="#camps">Smile Camp</a>
+    </nav>
+    <div class="streak" title="Your check-in streak"><span class="dot"></span><span><b id="streakN">0</b> day streak</span></div>
+    <button class="menu" id="menuBtn" aria-label="Menu">☰</button>
+  </header>
+
+  <!-- ================= HOME ================= -->
+  <main id="home" class="view">
+    <section class="hero">
+      <div class="hero-text reveal">
+        <span class="pill">Zenfresh ON Desk</span>
+        <h1>Show up ready.<br><span class="bn">সারাদিন সবার জন্য রেডি</span></h1>
+        <p>Zenfresh keeps you ready from 7 am to 7 pm. ZenBuddy helps you show up: for the viva, the job, the day and the people who need you.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#viva">Start a mock viva</a>
+          <a class="btn ghost" href="#planner">Plan my 7-to-7</a>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 200 200" class="ring">
+            <circle cx="100" cy="100" r="86" class="track"/>
+            <circle cx="100" cy="100" r="86" class="prog" id="ringProg"/>
+          </svg>
+          <div class="ring-text">
+            <small>Your day</small>
+            <b id="ringTime">–</b>
+            <span id="ringNote">of 12 hours ON</span>
+          </div>
+        </div>
+        <img src="assets/pack.png" alt="Zenfresh pack" class="pack float">
+      </div>
+    </section>
+
+    <div class="marquee"><div class="track-m" id="marquee"></div></div>
+
+    <section class="tools">
+      <h2 class="reveal">5 ways to stay <span class="hl">ON</span></h2>
+      <div class="grid" id="toolGrid"></div>
+    </section>
+
+    <section class="how reveal">
+      <h2>How ZenBuddy works</h2>
+      <ol class="steps">
+        <li><b>Scan</b><span>QR on your kit, tea-cup sleeve or ON Stage pass</span></li>
+        <li><b>Use</b><span>a tool that actually helps your day</span></li>
+        <li><b>Streak</b><span>check in at 7 pm, keep your streak</span></li>
+        <li><b>Show up</b><span>volunteer, earn a certificate, become a Show-up Hero</span></li>
+      </ol>
+    </section>
+
+    <section class="product reveal">
+      <img src="assets/pack.png" alt="Zenfresh 145 g pack">
+      <div>
+        <h2>One morning brush. Ready for every face you meet.</h2>
+        <ul class="claims">
+          <li>Kills 99.9% of germs</li>
+          <li>Fresh breath for up to 12 hours</li>
+          <li>Made with clove and ice-cool menthol</li>
+          <li>Made in Bangladesh</li>
+          <li>145 g pack comes with a free toothbrush</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= VIVA COACH ================= -->
+  <section id="viva" class="view tool-page" hidden>
+    <div class="tool-head" style="--img:url(assets/viva.jpg)">
+      <a href="#home" class="back">← Home</a>
+      <h1>Viva Coach</h1>
+      <p>Practise a job interview or admission viva. Answer out loud or type, and get instant feedback.</p>
+    </div>
+    <div class="panel">
+      <div class="row">
+        <label>Viva type
+          <select id="vivaType">
+            <option value="job">Job interview</option>
+            <option value="admission">Admission viva</option>
+            <option value="thesis">Thesis / project defence</option>
+          </select>
+        </label>
+        <label>Language
+          <select id="vivaLang">
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+          </select>
+        </label>
+        <button class="btn primary" id="vivaStart">Start</button>
+      </div>
+      <div id="vivaBox" class="viva-box" hidden>
+        <div class="q-head"><span id="qCount"></span><span class="timer" id="vivaTimer">90</span></div>
+        <h3 id="vivaQ"></h3>
+        <textarea id="vivaA" placeholder="Type your answer, or tap the mic and speak…"></textarea>
+        <div class="row">
+          <button class="btn ghost" id="micBtn">🎙 Speak</button>
+          <button class="btn primary" id="vivaSubmit">Get feedback</button>
+        </div>
+        <div id="vivaFb" class="feedback" hidden></div>
+      </div>
+      <div id="vivaSummary" class="summary" hidden></div>
+    </div>
+  </section>
+
+  <!-- ================= PLANNER ================= -->
+  <section id="planner" class="view tool-page" hidden>
+    <div class="tool-head" style="--img:url(assets/hero.jpg)">
+      <a href="#home" class="back">← Home</a>
+      <h1>7-to-7 Planner</h1>
+      <p>Plan your 12-hour day, run a focus timer, and check in at 7 pm to keep your streak.</p>
+    </div>
+    <div class="panel planner">
+      <div class="slots" id="slots"></div>
+      <aside class="side">
+        <div class="card">
+          <h3>Focus timer</h3>
+          <div class="focus" id="focusT">25:00</div>
+          <div class="row"><button class="btn primary" id="focusGo">Start</button><button class="btn ghost" id="focusReset">Reset</button></div>
+        </div>
+        <div class="card dark">
+          <h3 class="bn">এখনো ফ্রেশ?</h3>
+          <p>Check in at the end of your day to keep your streak.</p>
+          <button class="btn gold" id="checkIn">✓ Yes, still ON</button>
+          <p class="muted" id="checkMsg"></p>
+        </div>
+        <div class="card">
+          <h3>Today</h3>
+          <div class="bar"><i id="dayBar"></i></div>
+          <p class="muted" id="dayNote"></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= FORECAST ================= -->
+  <section id="forecast" class="view tool-page" hidden>
+    <div class="tool-head" style="--img:url(assets/adda.jpg)">
+      <a href="#home" class="back">← Home</a>
+      <h1>Fresh Forecast</h1>
+      <p>Today's heat, rain and wind, turned into your freshness plan for the day.</p>
+    </div>
+    <div class="panel">
+      <div class="row">
+        <label>Your city
+          <select id="city"></select>
+        </label>
+        <button class="btn primary" id="fcGo">Get today's forecast</button>
+      </div>
+      <div id="fcOut" class="fc-out" hidden></div>
+    </div>
+  </section>
+
+  <!-- ================= VOLUNTEER ================= -->
+  <section id="volunteer" class="view tool-page" hidden>
+    <div class="tool-head" style="--img:url(assets/volunteer.jpg)">
+      <a href="#home" class="back">← Home</a>
+      <h1 class="bn">ভালো কাজ Board</h1>
+      <p>Join a drive run by a verified youth group. Your hours are confirmed by the group lead and become a certificate.</p>
+    </div>
+    <div class="panel">
+      <div class="stats">
+        <div><b id="vHours">0</b><span>verified hours</span></div>
+        <div><b id="vDrives">0</b><span>drives joined</span></div>
+        <div><b id="vPending">0</b><span>awaiting check-in</span></div>
+      </div>
+      <div class="row"><label>Division <select id="vDiv"><option value="all">All divisions</option></select></label></div>
+      <div class="drives" id="drives"></div>
+      <div class="card cert-card">
+        <h3>Your certificate</h3>
+        <div class="row"><input id="certName" placeholder="Your full name"><button class="btn primary" id="certGo">Make certificate</button></div>
+        <canvas id="certCanvas" width="1200" height="850" hidden></canvas>
+        <a id="certDl" class="btn gold" download="ZenBuddy-certificate.png" hidden>Download PNG</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAMPS ================= -->
+  <section id="camps" class="view tool-page" hidden>
+    <div class="tool-head" style="--img:url(assets/camp.jpg)">
+      <a href="#home" class="back">← Home</a>
+      <h1>Upazila Smile Camp</h1>
+      <p>Free oral check-ups for the whole family by partner dental teams, in 16 upazilas across all 8 divisions.</p>
+    </div>
+    <div class="panel">
+      <div class="row"><label>Division <select id="cDiv"></select></label></div>
+      <div class="camps" id="campList"></div>
+      <p class="muted small">Check-ups are a free service by partner dental teams. They give advice only and do not recommend any brand.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div><img src="assets/logo-white.png" alt="Zenfresh" height="28"> <b>বারো ঘণ্টা, ফ্রেশনেস একদম ON!</b></div>
+    <p>Concept prototype made for CaseSprint Season 2 by Team Daal Bhaat. Not an official Dabur or Zenfresh website. Volunteer drives and camp dates are sample data.</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
